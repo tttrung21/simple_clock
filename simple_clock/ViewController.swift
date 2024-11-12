@@ -10,22 +10,17 @@ import UIKit
 class ViewController: UIViewController {
 
     var timer: Timer?
-    var countdownTime: Int = 0*60*60 + 1*60
+    var countdownTime: Int = 0*60*60 + 2*60
     @IBOutlet weak var clock: UILabel!
-    
-    
     		
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         startClock()
     }
-    
     func startClock(){
         updateTime()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
-    
     @objc func updateTime(){
         if countdownTime > 0{
             countdownTime -= 1
@@ -37,12 +32,10 @@ class ViewController: UIViewController {
         else{
             timer?.invalidate()
             clock.text = "00:00:00"
-
         }
     }
     deinit{
         timer?.invalidate()
     }
-
 }
 
